@@ -20,7 +20,7 @@ login(model: any)
       {
         localStorage.setItem('token', user.token);
       }
-    } ));
+    }));
 }
 
 

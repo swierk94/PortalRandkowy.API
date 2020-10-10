@@ -22,7 +22,7 @@
 
 <div *ngIf="loggedIn()" class="dropdown">
     <a class="dropdown-toggle text-light">
-      Witaj ADAM
+      Witaj {{authService.decodedToken?.unique_name | titlecase}}
     </a>
     <div class="dropdown-menu">
     <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edytuj profil</a>
@@ -32,6 +32,8 @@
     </div>
 
 </div>
+
+
 
 
     <form *ngIf="!loggedIn()"   #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">

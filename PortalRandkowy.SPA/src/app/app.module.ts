@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { AlertifyService } from './_services/alertify.service';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/auth.service';
@@ -23,7 +24,7 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AlertifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

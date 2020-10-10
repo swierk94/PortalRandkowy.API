@@ -1,4 +1,7 @@
+import { AlertifyService } from './../_services/alertify.service';
+import { AuthService } from './../_services/auth.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-register',
@@ -14,14 +17,23 @@ export class RegisterComponent implements OnInit {
 
   model: any = {};
 
-  constructor() { }
+  constructor(private authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
   }
 
   register()
   {
-    console.log(this.model);
+    this.authService.register(this.model).subscribe
+    (
+            ()  =>  {
+                this.alertify.success('rejestracja udana');
+                    },
+
+           error => {
+           this.alertify.error('Błąd - rejestracja nieudana');
+                    }
+    );
   }
 
   cancel()

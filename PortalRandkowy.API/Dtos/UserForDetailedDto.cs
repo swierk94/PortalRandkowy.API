@@ -50,7 +50,7 @@ namespace PortalRandkowy.API.Dtos
         public string FriendWouldDescribeMe { get; set; }
 
         //Zakładka zdjęcia
-        public ICollection<Photo> Photos { get; set; }
+        public ICollection<PhotosForDetailedDto> Photos { get; set; }
         public string PhotoUrl { get; set; } 
     }
 }

@@ -1,20 +1,19 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Portal randkowy</a>
-
-
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Użytkownicy </a>
+  <a class="navbar-brand" [routerLink]="['/home']" >Portal randkowy</a>
+      <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active" >
+        <a class="nav-link" [routerLink]="['/uzytkownicy']">Użytkownicy </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Polubienia</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/polubienia']">Polubienia</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link " [routerLink]="['/wiadomosci']" >Wiadomości</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" (click)="logout()">Wyloguj</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link " href="#" tabindex="-1" >Wiadomości</a>
-      </li>
+
     </ul>
 
 <!-- Small button groups (default and split) -->

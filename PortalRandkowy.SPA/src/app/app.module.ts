@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { LikesComponent } from './likes/likes/likes.component';
 import { UserListComponent } from './users/user-list/user-list.component';
@@ -16,6 +18,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserService } from './_services/user.service';
 import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
+import { AuthGuard } from './_guards/auth.guard';
 
 
 export function tokenGetter()
@@ -47,10 +50,12 @@ export function tokenGetter()
 
       }
     }),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot()
 
   ],
-  providers: [AuthService, AlertifyService, UserService],
+  providers: [AuthService, AlertifyService, UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

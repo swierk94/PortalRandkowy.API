@@ -18,13 +18,11 @@ namespace PortalRandkowy.API.Helpers
                 {
                     opt.ResolveUsing(src => src.DateOfBirth.CalculateAge());
                 });
-            CreateMap<User, UserForDetailedDto>()
-                .ForMember(dest => dest.PhotoUrl, opt =>
-                {
+             CreateMap<User, UserForDetailedDto>()
+                .ForMember(dest => dest.PhotoUrl, opt => {
                     opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsMainPhoto).Url);
                 })
-                  .ForMember(dest => dest.Age, opt =>
-                {
+                .ForMember(dest => dest.Age, opt => {
                     opt.ResolveUsing(src => src.DateOfBirth.CalculateAge());
                 });
             CreateMap<Photo, PhotosForDetailedDto>();

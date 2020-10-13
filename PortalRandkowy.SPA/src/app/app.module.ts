@@ -20,6 +20,7 @@ import { UserService } from './_services/user.service';
 import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
+import { UserCardComponent } from './users/user-card/user-card.component';
 
 
 export function tokenGetter()
@@ -36,7 +37,8 @@ export function tokenGetter()
       RegisterComponent,
       UserListComponent,
       MessagesComponent,
-      LikesComponent
+      LikesComponent,
+      UserCardComponent
    ],
   imports: [
     BrowserModule,

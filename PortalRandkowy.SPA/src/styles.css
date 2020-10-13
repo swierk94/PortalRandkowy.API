@@ -5,3 +5,7 @@
 @import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
 
 
+.container {
+  max-width: unset;
+
+}

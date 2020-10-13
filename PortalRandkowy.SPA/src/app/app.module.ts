@@ -21,6 +21,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { UserCardComponent } from './users/user-card/user-card.component';
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
 
 
 export function tokenGetter()
@@ -38,7 +39,8 @@ export function tokenGetter()
       UserListComponent,
       MessagesComponent,
       LikesComponent,
-      UserCardComponent
+      UserCardComponent,
+      UserDetailComponent
    ],
   imports: [
     BrowserModule,
@@ -49,7 +51,7 @@ export function tokenGetter()
       config: {
         tokenGetter: tokenGetter,
         allowedDomains: ['localhost:5000'],
-        disallowedRoutes: ['localhost:5000/api/auth']
+        disallowedRoutes: ['localhost:5000/auth']
 
       }
     }),

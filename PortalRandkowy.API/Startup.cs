@@ -70,7 +70,7 @@ namespace PortalRandkowy.API
             }
             else
             {
-                
+                app.UseHsts();
                 app.UseExceptionHandler
                 (
                     builder => 
@@ -91,7 +91,7 @@ namespace PortalRandkowy.API
                         );
                     }
                 );
-                app.UseHsts();
+                
             }
             seeder.SeedUsers();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());

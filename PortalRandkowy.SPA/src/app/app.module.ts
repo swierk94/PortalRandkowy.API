@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { LikesComponent } from './likes/likes/likes.component';
 import { UserListComponent } from './users/user-list/user-list.component';
@@ -57,7 +58,9 @@ export function tokenGetter()
     }),
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot()
+
 
   ],
   providers: [AuthService, AlertifyService, UserService, AuthGuard, ErrorInterceptorProvider],

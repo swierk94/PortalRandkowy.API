@@ -1,3 +1,4 @@
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -55,7 +56,7 @@ export function tokenGetter()
     BsDropdownModule.forRoot()
 
   ],
-  providers: [AuthService, AlertifyService, UserService, AuthGuard],
+  providers: [AuthService, AlertifyService, UserService, AuthGuard, ErrorInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

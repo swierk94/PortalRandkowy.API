@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
                     },
 
            error => {
-           this.alertify.error('Błąd - rejestracja nieudana');
+           this.alertify.error(error);
                     }
     );
   }

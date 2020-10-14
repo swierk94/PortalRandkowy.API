@@ -1,3 +1,4 @@
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserDetailResolver } from './_resolvers/user-detail.resolver';
 import { HomeComponent } from './home/home.component';
@@ -21,7 +22,9 @@ export const appRoutes: Routes =
    [
     {path: 'uzytkownicy', component: UserListComponent, resolve: {users: UserListResolver}},
     {path: 'uzytkownicy/:id', component: UserDetailComponent, resolve: {user: UserDetailResolver}},
-    {path: 'uzytkownik/edycja', component: UserEditComponent, resolve: {user: UserEditResolver}},
+    {path: 'uzytkownik/edycja', component: UserEditComponent,
+                                resolve: {user: UserEditResolver},
+                                canDeactivate: [PreventUnsavedChanges]},
     {path: 'polubienia', component: LikesComponent},
     {path: 'wiadomosci', component: MessagesComponent},
    ]

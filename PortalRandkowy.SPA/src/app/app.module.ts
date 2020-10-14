@@ -29,6 +29,7 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserListResolver } from './_resolvers/user-list.resolver';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 
 export function tokenGetter()
@@ -72,7 +73,11 @@ export function tokenGetter()
 
 
   ],
-  providers: [AuthService, AlertifyService, UserService, AuthGuard, ErrorInterceptorProvider, UserDetailResolver, UserListResolver, UserEditResolver],
+  providers: [AuthService, AlertifyService, UserService, AuthGuard, ErrorInterceptorProvider,
+       UserDetailResolver, UserListResolver, UserEditResolver, PreventUnsavedChanges
+
+
+      ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

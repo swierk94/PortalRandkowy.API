@@ -27,6 +27,8 @@ import { AuthGuard } from './_guards/auth.guard';
 import { UserCardComponent } from './users/user-card/user-card.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserListResolver } from './_resolvers/user-list.resolver';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { UserEditResolver } from './_resolvers/user-edit.resolver';
 
 
 export function tokenGetter()
@@ -45,7 +47,8 @@ export function tokenGetter()
       MessagesComponent,
       LikesComponent,
       UserCardComponent,
-      UserDetailComponent
+      UserDetailComponent,
+      UserEditComponent
    ],
   imports: [
     BrowserModule,
@@ -69,7 +72,7 @@ export function tokenGetter()
 
 
   ],
-  providers: [AuthService, AlertifyService, UserService, AuthGuard, ErrorInterceptorProvider, UserDetailResolver, UserListResolver],
+  providers: [AuthService, AlertifyService, UserService, AuthGuard, ErrorInterceptorProvider, UserDetailResolver, UserListResolver, UserEditResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

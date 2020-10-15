@@ -12,10 +12,13 @@ import { error } from 'protractor';
 export class NavComponent implements OnInit {
 
   model: any = {};
+  photoUrl: string;
 
   constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit()
+  {
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
   login()
@@ -43,6 +46,7 @@ export class NavComponent implements OnInit {
     this.authService.decodedToken = null;
     this.alertify.message('Zostałeś wylogowany');
     this.router.navigate(['/home']);
+
   }
 
 

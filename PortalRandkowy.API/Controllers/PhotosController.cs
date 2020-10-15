@@ -52,9 +52,9 @@ namespace PortalRandkowy.API.Controllers
             var file = photoForCreationDto.File;
             var uploadResult = new ImageUploadResult();
 
-            if(file.Length > 0)
+            if (file.Length > 0)
             {
-                using ( var stream = file.OpenReadStream())
+                using (var stream = file.OpenReadStream())
                 {
                     var uploadParams = new ImageUploadParams()
                     {
@@ -79,7 +79,7 @@ namespace PortalRandkowy.API.Controllers
             if (await _repository.SaveAll())
             {
                 var photoToReturn = _mapper.Map<PhotoForReturnDto>(photo);
-                return CreatedAtRoute("GetPhoto", new {id = photo.Id}, photoToReturn);
+                return CreatedAtRoute("GetPhoto", new { id = photo.Id }, photoToReturn);
             }
             return BadRequest("Nie można dodać zdjęcia");
         }
@@ -96,13 +96,13 @@ namespace PortalRandkowy.API.Controllers
         [HttpPost("{id}/setMain")]
         public async Task<IActionResult> SetMainPhoto(int userId, int id)
         {
-             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
                 return Unauthorized();
             }
 
             var user = await _repository.GetUser(userId);
-            
+
             if (!user.Photos.Any(p => p.Id == id))
             {
                 return Unauthorized();
@@ -110,8 +110,8 @@ namespace PortalRandkowy.API.Controllers
 
             var photoFromRepo = await _repository.GetPhoto(id);
 
-            if(photoFromRepo.IsMainPhoto)
-            return BadRequest("To już jest główne zdjęcie");
+            if (photoFromRepo.IsMainPhoto)
+                return BadRequest("To już jest główne zdjęcie");
 
             var currentMainPhoto = await _repository.GetMainPhotoForUser(userId);
             currentMainPhoto.IsMainPhoto = false;
@@ -124,6 +124,53 @@ namespace PortalRandkowy.API.Controllers
             }
 
             return BadRequest("Nie można ustawić zdjęcia jako głównegi");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePhoto(int userId, int id)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var user = await _repository.GetUser(userId);
+
+            if (!user.Photos.Any(p => p.Id == id))
+            {
+                return Unauthorized();
+            }
+
+            var photoFromRepo = await _repository.GetPhoto(id);
+
+            if (photoFromRepo.IsMainPhoto)
+            {
+                return BadRequest("Nie można usunąć głównego zdjęcia");
+            }
+
+            if (photoFromRepo.public_id != null)
+            {
+                var deleteParams = new DeletionParams(photoFromRepo.public_id);
+                var result = _cloudinary.Destroy(deleteParams);
+
+                if (result.Result == "ok")
+                {
+                    _repository.Delete(photoFromRepo);
+                }
+            }
+
+            if (photoFromRepo.public_id != null)
+            {
+                _repository.Delete(photoFromRepo);
+            }
+
+
+            if (await _repository.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Nie udało się usunąć zdjęcia");
         }
     }
 }

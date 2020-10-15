@@ -123,7 +123,7 @@ namespace PortalRandkowy.API.Controllers
                 return NoContent();
             }
 
-            return BadRequest("Nie można ustawić zdjęcia jako głównegi");
+            return BadRequest("Nie można ustawić zdjęcia jako głównej");
         }
 
         [HttpDelete("{id}")]

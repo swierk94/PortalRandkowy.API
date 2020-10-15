@@ -2,6 +2,7 @@ import { AlertifyService } from './../_services/alertify.service';
 import { AuthService } from './../_services/auth.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { error } from 'protractor';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -14,26 +15,36 @@ export class RegisterComponent implements OnInit {
   valuesFromHome: any;
   @Output()
   cancelRegister = new EventEmitter();
+  registerForm: FormGroup;
 
   model: any = {};
 
   constructor(private authService: AuthService, private alertify: AlertifyService) { }
 
-  ngOnInit() {
+  ngOnInit()
+  {
+    this.registerForm = new FormGroup(
+      {
+        username: new FormControl(),
+        password: new FormControl(),
+        confirmPassword: new FormControl()
+      }
+    );
   }
 
   register()
   {
-    this.authService.register(this.model).subscribe
-    (
-            ()  =>  {
-                this.alertify.success('rejestracja udana');
-                    },
+    // this.authService.register(this.model).subscribe
+    // (
+    //         ()  =>  {
+    //             this.alertify.success('rejestracja udana');
+    //                 },
 
-           error => {
-           this.alertify.error(error);
-                    }
-    );
+    //        error => {
+    //        this.alertify.error(error);
+    //                 }
+    // );
+    console.log(this.registerForm.value);
   }
 
   cancel()

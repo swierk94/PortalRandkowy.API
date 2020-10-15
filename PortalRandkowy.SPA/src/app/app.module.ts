@@ -72,7 +72,8 @@ export function tokenGetter()
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    NgxGalleryModule
+    NgxGalleryModule,
+    ReactiveFormsModule
 
 
 

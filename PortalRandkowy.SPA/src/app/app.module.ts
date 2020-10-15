@@ -1,3 +1,4 @@
+import { FileUploadModule } from 'ng2-file-upload';
 import { UserDetailResolver } from './_resolvers/user-detail.resolver';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RouterModule } from '@angular/router';
@@ -30,6 +31,7 @@ import { UserListResolver } from './_resolvers/user-list.resolver';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { PhotosComponent } from './users/photos/photos.component';
 
 
 export function tokenGetter()
@@ -49,12 +51,14 @@ export function tokenGetter()
       LikesComponent,
       UserCardComponent,
       UserDetailComponent,
-      UserEditComponent
+      UserEditComponent,
+      PhotosComponent
    ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    FileUploadModule,
     ReactiveFormsModule,
     JwtModule.forRoot({
       config: {

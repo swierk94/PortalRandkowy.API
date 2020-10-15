@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import {map} from 'rxjs/operators';
+import { User } from '../_models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AuthService {
 baseUrl = environment.apiUrl + 'auth/';
 jwtHelper = new JwtHelperService();
 decodedToken: any;
+curentUser: User;
 
 constructor(private http: HttpClient) { }
 
@@ -24,7 +26,9 @@ login (model: any)
       if (user)
       {
         localStorage.setItem('token', user.token);
+        localStorage.setItem('user', JSON.stringify(user.user));
         this.decodedToken = this.jwtHelper.decodeToken(user.token);
+        this.curentUser = user.user;
         console.log(this.decodedToken);
       }
     }));

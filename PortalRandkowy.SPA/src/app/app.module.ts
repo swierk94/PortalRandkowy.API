@@ -1,3 +1,4 @@
+import { TimeAgoPipe } from './_pipes/time-ago-pipe';
 import { FileUploadModule } from 'ng2-file-upload';
 import { UserDetailResolver } from './_resolvers/user-detail.resolver';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
@@ -52,7 +53,8 @@ export function tokenGetter()
       UserCardComponent,
       UserDetailComponent,
       UserEditComponent,
-      PhotosComponent
+      PhotosComponent,
+      TimeAgoPipe
    ],
   imports: [
     BrowserModule,

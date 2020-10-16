@@ -13,7 +13,6 @@ namespace PortalRandkowy.API.Data
         public UserRepository(DataContext context) : base(context)
         {
             _context = context;
-
         }
 
        

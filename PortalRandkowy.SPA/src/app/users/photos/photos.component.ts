@@ -62,9 +62,13 @@ export class PhotosComponent implements OnInit {
           description: res.description,
           isMainPhoto: res.isMainPhoto
         };
-
         this.photos.push(photo);
-
+        if (photo.isMainPhoto)
+        {
+        this.authService.changeUserPhoto(photo.url);
+        this.authService.curentUser.photoUrl = photo.url;
+        localStorage.setItem('user', JSON.stringify(this.authService.curentUser));
+        }
       }
     };
   }

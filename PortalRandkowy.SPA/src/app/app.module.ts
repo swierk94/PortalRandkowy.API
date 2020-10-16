@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
-
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { LikesComponent } from './likes/likes/likes.component';
 import { UserListComponent } from './users/user-list/user-list.component';
@@ -73,7 +73,9 @@ export function tokenGetter()
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     NgxGalleryModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot()
 
 
 

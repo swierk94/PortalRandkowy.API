@@ -1,3 +1,4 @@
+import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AlertifyService } from './../_services/alertify.service';
 import { AuthService } from './../_services/auth.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
@@ -16,6 +17,7 @@ export class RegisterComponent implements OnInit {
   @Output()
   cancelRegister = new EventEmitter();
   registerForm: FormGroup;
+  bsConfig: Partial<BsDatepickerConfig>;
 
   model: any = {};
 
@@ -24,6 +26,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit()
   {
     this.createRegisterForm();
+    this.bsConfig =
+    {
+      containerClass: 'theme-green'
+    };
   }
 
   createRegisterForm()

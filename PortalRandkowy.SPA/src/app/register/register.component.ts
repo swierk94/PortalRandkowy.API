@@ -23,14 +23,17 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit()
   {
-    this.registerForm = new FormGroup(
-      {
-        username: new FormControl('', Validators.required),
-        password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
-        confirmPassword: new FormControl('', Validators.required)
-      },
-        this.passwordMatchValidator
-    );
+    this.createRegisterForm();
+  }
+
+  createRegisterForm()
+  {
+    this.registerForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
+      confirmPassword: ['', Validators.required]
+    },
+    {validator: this.passwordMatchValidator});
   }
 
   passwordMatchValidator(fg: FormGroup)

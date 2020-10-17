@@ -20,7 +20,7 @@ export class UserListComponent implements OnInit {
     (
       data =>
       {
-        this.users = data.users;
+        this.users = data.users.result;
       }
     );
   }

@@ -14,9 +14,6 @@
       <a href="http://onet.pl">
         <img src="../../../assets/2.jpg" alt="http://onet.pl" class="card-img-top">
       </a>
-      <a href="http://onet.pl">
-        <img src="../../../assets/2.jpg" alt="http://onet.pl" class="card-img-top">
-      </a>
     </div>
     <div class="col-lg-10 col-md-8 col-sm-6">
       <div class="row">
@@ -28,6 +25,15 @@
         <img src="../../../assets/1.jpg" alt="Google.pl" class="card-img-top">
       </a>
     </div>
+    <pagination [boundaryLinks]="true"
+    [totalItems]="pagination.totalItems"
+    [itemsPerPage]="pagination.itemsPerPage"
+    [(ngModel)]="pagination.currentPage"
+    (pageChanged)="pageChanged($event)"
+
+            previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+
+</pagination>
   </div>
 </div>
 

@@ -11,8 +11,8 @@ import { catchError } from 'rxjs/operators';
 @Injectable()
 export class UserListResolver implements Resolve<User>
 {
-  pageNumber = 1;
-  pageSize = 18;
+  pageNumber = 2;
+  pageSize = 20;
 
   constructor(private userSevice: UserService,
               private router: Router,

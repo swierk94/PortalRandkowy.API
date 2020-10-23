@@ -12,6 +12,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserListComponent implements OnInit {
   users: User[];
+  user: User = JSON.parse(localStorage.getItem('user'));
+  genderList = [{value: 'male', display:'Mężczyźni'},
+                {value: 'female', display:'Kobiety'}];
+  zodiacSignList = [{value: 'Wszystkie', display: 'Wszystkie'}];
+
+  userParams: any = {};
   pagination: Pagination;
 
   constructor(
@@ -24,9 +30,21 @@ export class UserListComponent implements OnInit {
     this.route.data.subscribe((data) => {
       this.users = data.users.result;
       this.pagination = data.users.pagination;
-
     });
+    this.userParams.gender = this.user.gender ==='female' ? 'male' : 'female';
+    this.userParams.zodiacSign = 'Wszystkie';
+    this.userParams.minAge = 18;
+    this.userParams.maxAge = 99;
   }
+
+  resetFilters()
+  {
+    this.userParams.gender = this.user.gender ==='female' ? 'male' : 'female';
+    this.userParams.zodiacSign = 'Wszystkie';
+    this.userParams.minAge = 18;
+    this.userParams.maxAge = 99;
+  }
+
 
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
@@ -35,7 +53,7 @@ export class UserListComponent implements OnInit {
 
   loadUsers()
   {
-    this.userService.getUsers(this.pagination.currentPage, this.pagination.itemsPerPage)
+    this.userService.getUsers(this.pagination.currentPage, this.pagination.itemsPerPage, this.userParams)
     .subscribe( (res: PaginationResult<User[]>) =>
     {
       this.users = res.result;

@@ -14,6 +14,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { LikesComponent } from './likes/likes/likes.component';
 import { UserListComponent } from './users/user-list/user-list.component';
@@ -79,10 +80,8 @@ export function tokenGetter()
     ReactiveFormsModule,
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
-    PaginationModule.forRoot()
-
-
-
+    PaginationModule.forRoot(),
+    ButtonsModule.forRoot()
   ],
   providers: [AuthService, AlertifyService, UserService, AuthGuard, ErrorInterceptorProvider,
        UserDetailResolver, UserListResolver, UserEditResolver, PreventUnsavedChanges

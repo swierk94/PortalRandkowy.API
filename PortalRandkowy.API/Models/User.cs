@@ -52,6 +52,8 @@ namespace PortalRandkowy.API.Models
         public string FriendWouldDescribeMe { get; set; }
 
         //Zakładka zdjęcia
-        public ICollection<Photo> Photos { get; set; }
+        public ICollection<Photo> Photos { get; set; }  
+        public ICollection<Like> UserLikes { get; set; } //użytkownik lubi
+        public ICollection<Like> UserIsLiked { get; set; } //jest lubiany przez 
     }
 }

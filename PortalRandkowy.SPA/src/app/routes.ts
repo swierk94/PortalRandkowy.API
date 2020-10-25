@@ -1,3 +1,4 @@
+import { LikesResolver } from './_resolvers/likes.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserDetailResolver } from './_resolvers/user-detail.resolver';
@@ -25,7 +26,8 @@ export const appRoutes: Routes =
     {path: 'uzytkownik/edycja', component: UserEditComponent,
                                 resolve: {user: UserEditResolver},
                                 canDeactivate: [PreventUnsavedChanges]},
-    {path: 'polubienia', component: LikesComponent},
+    {path: 'polubienia', component: LikesComponent,
+                        resolve: {users: LikesResolver}},
     {path: 'wiadomosci', component: MessagesComponent},
    ]
   },

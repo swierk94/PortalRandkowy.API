@@ -8,7 +8,7 @@
   <img src="{{user.photoUrl || '../../../../../assets/1.jpg'}}" class="card-img-top" alt="user.username">
   <ul class="list-inline text-center user-icons animate">
     <li class="list-inline-item">
-      <button class="btn btn-warning btn-sm"><i class="fa fa-heart"></i></button>
+      <button class="btn btn-warning btn-sm" (click)="sendLike(user.id)"><i class="fa fa-heart"></i></button>
     </li>
     <li class="list-inline-item">
       <button class="btn btn-warning btn-sm" [routerLink]="['/uzytkownicy/', user.id]"><i class="fa fa-user"></i></button>

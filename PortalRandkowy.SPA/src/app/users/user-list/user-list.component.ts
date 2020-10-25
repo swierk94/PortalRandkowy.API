@@ -65,6 +65,6 @@ export class UserListComponent implements OnInit {
     {
       this.alertify.error(error);
     }
-    )
+    );
   }
 }

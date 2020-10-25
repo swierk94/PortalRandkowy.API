@@ -35,6 +35,7 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotosComponent } from './users/photos/photos.component';
+import { LikesResolver } from './_resolvers/likes.resolver';
 
 
 export function tokenGetter()
@@ -84,7 +85,7 @@ export function tokenGetter()
     ButtonsModule.forRoot()
   ],
   providers: [AuthService, AlertifyService, UserService, AuthGuard, ErrorInterceptorProvider,
-       UserDetailResolver, UserListResolver, UserEditResolver, PreventUnsavedChanges
+       UserDetailResolver, UserListResolver, UserEditResolver, PreventUnsavedChanges, LikesResolver
 
 
       ],

@@ -32,14 +32,14 @@
         <div class="card-footer">
           <div class="btn-group d-flex">
             <button class="btn btn-success w-100">Lubię</button>
-            <button class="btn btn-primary w-100">Wiadomości</button>
+            <button class="btn btn-primary w-100" (click)="selectTab(5)">Wiadomości</button>
           </div>
         </div>
       </div>
     </div>
     <div class="col-sm-8">
       <div class="tab-panel">
-        <tabset class="user-tabset">
+        <tabset class="user-tabset" #userTabs>
           <tab heading="Informacje {{user.username}}">
             <table class="user-table" >
               <tr>
@@ -122,7 +122,7 @@
             <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
           </tab>
           <tab heading="Wiadomości">
-            <p>Tutaj będą wiadomości</p>
+            <p><app-user-messages [recipientId]="user.id"></app-user-messages></p>
           </tab>
         </tabset>
       </div>

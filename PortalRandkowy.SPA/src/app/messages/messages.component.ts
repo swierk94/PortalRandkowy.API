@@ -5,8 +5,6 @@ import { UserService } from './../_services/user.service';
 import { Pagination, PaginationResult } from './../_models/pagination';
 import { Component, OnInit } from '@angular/core';
 import { Message } from '../_models/message';
-import { MessagesListResolver } from '../_resolvers/messages.resolver';
-import { error } from 'protractor';
 
 @Component({
   selector: 'app-messages',

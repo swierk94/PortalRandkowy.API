@@ -95,5 +95,19 @@ namespace PortalRandkowy.API.Controllers
 
             throw new Exception("Utworzenie wiadomości nie powidło się przy zapisie");
         }
+
+        [HttpGet("thread/{recipientId}")]
+        public async Task<IActionResult> GetMessageThread(int userId, int recipientId)
+        {
+             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var messagesForRepo = await _repository.GetMessageThread(userId, recipientId);
+            var messageThread = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesForRepo);
+
+            return Ok(messageThread);
+        }
     }
 }

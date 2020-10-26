@@ -1,3 +1,4 @@
+import { MessagesListResolver } from './_resolvers/messages.resolver';
 import { TimeAgoPipe } from './_pipes/time-ago-pipe';
 import { FileUploadModule } from 'ng2-file-upload';
 import { UserDetailResolver } from './_resolvers/user-detail.resolver';
@@ -85,7 +86,8 @@ export function tokenGetter()
     ButtonsModule.forRoot()
   ],
   providers: [AuthService, AlertifyService, UserService, AuthGuard, ErrorInterceptorProvider,
-       UserDetailResolver, UserListResolver, UserEditResolver, PreventUnsavedChanges, LikesResolver
+       UserDetailResolver, UserListResolver, UserEditResolver, PreventUnsavedChanges, LikesResolver,
+       MessagesListResolver
 
 
       ],

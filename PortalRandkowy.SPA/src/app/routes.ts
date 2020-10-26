@@ -11,6 +11,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserListResolver } from './_resolvers/user-list.resolver';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
+import { MessagesListResolver } from './_resolvers/messages.resolver';
 
 
 export const appRoutes: Routes =
@@ -28,7 +29,8 @@ export const appRoutes: Routes =
                                 canDeactivate: [PreventUnsavedChanges]},
     {path: 'polubienia', component: LikesComponent,
                         resolve: {users: LikesResolver}},
-    {path: 'wiadomosci', component: MessagesComponent},
+    {path: 'wiadomosci', component: MessagesComponent,
+                        resolve: {messages: MessagesListResolver}},
    ]
   },
   {path: '**', redirectTo: '', pathMatch: 'full'}

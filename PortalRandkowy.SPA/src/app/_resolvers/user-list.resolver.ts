@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 
 
 @Injectable()
-export class UserListResolver implements Resolve<User>
+export class UserListResolver implements Resolve<User[]>
 {
   pageNumber = 2;
   pageSize = 20;
@@ -18,7 +18,7 @@ export class UserListResolver implements Resolve<User>
               private router: Router,
               private alertify: AlertifyService) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<User> {
+  resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
     return this.userSevice.getUsers(this.pageNumber, this.pageSize).pipe
     (
       catchError(error =>

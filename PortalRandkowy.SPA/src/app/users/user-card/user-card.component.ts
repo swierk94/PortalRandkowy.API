@@ -31,7 +31,7 @@ export class UserCardComponent implements OnInit {
                       this.alertify.success('Polubiłeś: ' + this.user.username);
                     }, error =>{
                       this.alertify.error(error);
-                    })
+                    });
   }
 
 }

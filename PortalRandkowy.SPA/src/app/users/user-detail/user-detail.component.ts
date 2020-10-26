@@ -1,3 +1,4 @@
+import { AuthService } from './../../_services/auth.service';
 import { AlertifyService } from './../../_services/alertify.service';
 import { UserService } from './../../_services/user.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -23,6 +24,7 @@ export class UserDetailComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   constructor(
+    private authService: AuthService,
     private userService: UserService,
     private alertify: AlertifyService,
     private route: ActivatedRoute
@@ -73,5 +75,16 @@ export class UserDetailComponent implements OnInit {
   selectTab(tabId: number)
   {
     this.userTabs.tabs[tabId].active = true;
+  }
+
+
+  sendLike(id: number)
+  {
+    this.userService.sendLike(this.authService.decodedToken.nameid, id)
+                    .subscribe( data =>{
+                      this.alertify.success('Polubiłeś: ' + this.user.username);
+                    }, error =>{
+                      this.alertify.error(error);
+                    });
   }
 }

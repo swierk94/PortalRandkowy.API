@@ -15,7 +15,7 @@ namespace PortalRandkowy.API.Controllers
 {
     [ServiceFilter(typeof(LogUserActivity))]
     [Authorize]
-    [Route("api/users/{userId}/[controller]")]
+    [Route("users/{userId}/[controller]")]
     [ApiController]
 
     public class MessagesController : ControllerBase
@@ -61,6 +61,11 @@ namespace PortalRandkowy.API.Controllers
             var messagesToReturn = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
             
             Response.AddPagination(messagesFromRepo.CurrentPage, messagesFromRepo.PageSize, messagesFromRepo.TotalCount, messagesFromRepo.TotalPages);
+            
+            foreach (var message in messagesToReturn)
+            {
+                message.MessageContainer = messageParams.MessageContainer;
+            }
 
             return Ok(messagesToReturn);
 
@@ -143,5 +148,33 @@ namespace PortalRandkowy.API.Controllers
 
             throw new Exception("Błąd podczas usuwania wiadomośći");
         }
+
+    [HttpPost("{id}/read")]
+    public async Task<IActionResult> MarkMessageAsRead(int userId, int id)
+    {
+    if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                {
+                    return Unauthorized();
+                }
+
+    var message = await _repository.GetMessage(id);
+    if(message.RecipientId != userId)
+    {
+        return Unauthorized();
     }
+
+    message.IsRead = true;
+    message.DateRead = DateTime.Now;
+
+    await _repository.SaveAll();
+
+     if(await _repository.SaveAll())
+            {
+                return NoContent();
+            }
+
+            throw new Exception("Błąd");
+    }
+    }
+
 }

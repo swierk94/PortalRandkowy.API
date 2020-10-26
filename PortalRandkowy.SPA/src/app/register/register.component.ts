@@ -20,8 +20,14 @@ export class RegisterComponent implements OnInit {
   cancelRegister = new EventEmitter();
   registerForm: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
-
   user: User;
+  zodiacSignList =
+  [
+  {value: 'Rak', display: 'Rak'},
+  {value: 'Inne', display: 'Inne'}
+  ];
+
+ userParams: any = {};
 
   constructor(private authService: AuthService, private alertify: AlertifyService, private fb: FormBuilder, private router: Router) { }
 
@@ -40,7 +46,7 @@ export class RegisterComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
       confirmPassword: ['', Validators.required],
-      gender: ['female'],
+      gender: ['kobieta'],
       city: ['', Validators.required],
       country: ['', Validators.required],
       dateOfBirth: ['', Validators.required],

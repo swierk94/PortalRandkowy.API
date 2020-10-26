@@ -5,6 +5,7 @@ import { UserService } from './../_services/user.service';
 import { Pagination, PaginationResult } from './../_models/pagination';
 import { Component, OnInit } from '@angular/core';
 import { Message } from '../_models/message';
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-messages',
@@ -13,6 +14,7 @@ import { Message } from '../_models/message';
 })
 export class MessagesComponent implements OnInit {
 
+  flagaOutbox = false;
   messages: Message[];
   pagination: Pagination;
   messageContainer = "Nieprzeczytane";
@@ -37,9 +39,34 @@ export class MessagesComponent implements OnInit {
                                  .subscribe((res: PaginationResult<Message[]>) => {
                                    this.messages = res.result;
                                    this.pagination = res.pagination;
+
+                                   if (res.result[0].messageContainer == 'Outbox')
+                                   {
+                                     this.flagaOutbox = true;
+                                   }
+                                   else
+                                   {
+                                     this.flagaOutbox = false;
+                                   }
+
                                  }, error => {
                                    this.alertify.error(error);
                                  });
+
+
+
+  }
+
+  deleteMessage(id: number)
+  {
+    this.alertify.confirm('Czy na pewno chcesz usunąć tę wiadomość?', () => {
+      this.userService.deleteMessage(id, this.authService.decodedToken.nameid).subscribe(() => {
+        this.messages.splice(this.messages.findIndex(m => m.id === id), 1);
+        this.alertify.success('Wiadomość została usunieta');
+      }, error =>{
+        this.alertify.error('Nie udało się usunąć wiadomości');
+      })
+    });
   }
 
   pageChanged(event: any): void

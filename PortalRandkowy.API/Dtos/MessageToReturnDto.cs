@@ -17,5 +17,6 @@ namespace PortalRandkowy.API.Dtos
         public bool RecipientDeleted { get; set; }
         public string SenderPhotoUrl { get; set; }
         public string RecipientPhotoUrl { get; set; }
+        public string MessageContainer { get; set; }
     }
 }

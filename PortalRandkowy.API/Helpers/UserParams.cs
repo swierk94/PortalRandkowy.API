@@ -20,5 +20,7 @@ namespace PortalRandkowy.API.Helpers
         public bool UserLikes { get; set; } = false;
         public bool UserIsLiked { get; set; } = false;
 
+        
+
     }
 }
